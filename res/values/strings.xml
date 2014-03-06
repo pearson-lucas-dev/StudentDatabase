@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Student Database</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="et_firstname">Enter first name</string>
+    <string name="et_lastname">Enter last name</string>
+    <string name="et_email">Enter email address</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_showtable">Show Table</string>
+    <string name="btn_close">Close</string>
+    <string name="title_activity_show_table">ShowTable</string>
+    <string name="tr_header_firstname">First Name</string>
+    <string name="tr_header_lastname">Last Name</string>
+    <string name="tr_header_email">Email</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
