@@ -13,6 +13,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 	// call StudentData.getSqlDatabae
+	
+	//test commit
 	StudentData studentData;
 	String fname, lname, email;
 	EditText etFirstName;
