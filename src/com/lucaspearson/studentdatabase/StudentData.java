@@ -25,33 +25,57 @@ public class StudentData {
 			SQLiteDatabase db = helper.getWritableDatabase();
 			id = db.insert(StudentDataHelper.DATABASE_TABLE, null, cv);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Log.d("SQL ERROR", e.getMessage().toString());
 		}
 		return id;
 	}
-	public Cursor returnAllCursor(){
-		SQLiteDatabase db  = helper.getReadableDatabase();
+
+	public Cursor returnAllCursor() {
+		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor c = db.rawQuery("SELECT * from Student", null);
 		return c;
-		
+
 	}
-	
-	public boolean deleteStudentWithID(int id){
+
+	public Cursor returnCursorWithID(int id) {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor c = db.rawQuery("SELECT * FROM "
+				+ StudentDataHelper.DATABASE_TABLE + " WHERE "
+				+ StudentDataHelper.KEY_ROWID + " = " + id, null);
+		return c;
+	}
+
+	public boolean deleteStudentWithID(int id) {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		try {
-			db.delete(StudentDataHelper.DATABASE_TABLE, StudentDataHelper.KEY_ROWID+"="+id, null);
+			db.delete(StudentDataHelper.DATABASE_TABLE,
+					StudentDataHelper.KEY_ROWID + "=" + id, null);
 			return true;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
-	
-	
+
+	public boolean updateStudentWithID(int id, String fname, String lname,
+			String email) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(StudentDataHelper.KEY_FIRST_NAME, fname);
+		cv.put(StudentDataHelper.KEY_LAST_NAME, lname);
+		cv.put(StudentDataHelper.KEY_EMAIL, email);
+		try {
+			db.update(StudentDataHelper.DATABASE_TABLE, cv,
+					StudentDataHelper.KEY_ROWID + "=" + id, null);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 
 	private class StudentDataHelper extends SQLiteOpenHelper {
 		private static final String KEY_ROWID = "_id";
@@ -62,7 +86,12 @@ public class StudentData {
 		private static final String DATABASE_NAME = "studentdata";
 		private static final String DATABASE_TABLE = "Student";
 		private static final int DATABASE_VERSION = 1;
+		private static final String CREATE_TABLE = "CREATE TABLE "
+				+ DATABASE_TABLE + " (" + KEY_ROWID
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_FIRST_NAME
+				+ " TEXT, " + KEY_LAST_NAME + " TEXT, " + KEY_EMAIL + " TEXT);";
 
+		private static final String DROP_TABLE = "DROP " + DATABASE_TABLE + ";";
 
 		public StudentDataHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -76,10 +105,7 @@ public class StudentData {
 			// execSQL methods called
 			try {
 				Log.d("ON CREATE", "Got to onCreate in Helper class");
-				db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" + KEY_ROWID
-						+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-						+ KEY_FIRST_NAME + " TEXT, " + KEY_LAST_NAME
-						+ " TEXT, " + KEY_EMAIL + " TEXT);");
+				db.execSQL(CREATE_TABLE);
 
 			} catch (SQLException sqlE) {
 				sqlE.printStackTrace();
@@ -90,7 +116,7 @@ public class StudentData {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			try {
-				db.execSQL("DROP " + DATABASE_TABLE + ";");
+				db.execSQL(DROP_TABLE);
 				onCreate(db);
 			} catch (SQLException e) {
 				e.printStackTrace();
