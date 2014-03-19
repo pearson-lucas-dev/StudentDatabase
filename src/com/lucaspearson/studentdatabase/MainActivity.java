@@ -1,5 +1,8 @@
 package com.lucaspearson.studentdatabase;
-
+/* programmer: Lucas Pearson
+ * date: 3-18-2014
+ * description: This app has a SQLite database that has student info.  
+ */
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
