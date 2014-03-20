@@ -29,13 +29,11 @@ public class ShowTable extends ListActivity {
 		studentData = new StudentData(ShowTable.this);
 		TextView tv = new TextView(this);
 		tv.setText("Click for update. Long Click for delete.");
-		tv.setId(1010101010);
-		Toast.makeText(getApplicationContext(), String.valueOf(tv.getId()), Toast.LENGTH_SHORT).show();
 		tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-			//This is so the app doesnt crash!
+				// This is so the app doesnt crash!
 
 			}
 		});
@@ -45,7 +43,7 @@ public class ShowTable extends ListActivity {
 				new OnItemLongClickListener() {
 					public boolean onItemLongClick(AdapterView<?> parent,
 							View v, int position, long id) {
-						final int pos = position;
+						//use position - 1 because the array is 0 based.
 						final Student student = results.get(position - 1);
 						AlertDialog.Builder alert = new AlertDialog.Builder(
 								ShowTable.this);
@@ -61,8 +59,8 @@ public class ShowTable extends ListActivity {
 										setListAdapter(null);
 										setupTable();
 										displayResultList();
-										Toast.makeText(getApplicationContext(),
-												String.valueOf(pos),
+										Toast.makeText(getBaseContext(),
+												"You deleted a student!",
 												Toast.LENGTH_SHORT).show();
 									}
 								});
@@ -116,17 +114,19 @@ public class ShowTable extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View view, int position, long id) {
-		
+
 		/*
-		 * This is not a clean fix.... 
-		 * What this does is ignores a click on the header of the listview
-		 * I tried to setClickable to false with no success
+		 * This is not a clean fix.... What this does is ignores a click on the
+		 * header of the listview I tried to setClickable to false with no
+		 * success
 		 */
-	
-		if(position == 0){
+
+		if (position == 0) {
 			return;
 		}
 		super.onListItemClick(l, view, position, id);
+
+		//use position - 1 because the array is 0 based.
 		final Student student = results.get(position - 1);
 		AlertDialog.Builder alert = new AlertDialog.Builder(ShowTable.this);
 		alert.setTitle("Update Student record");
