@@ -72,6 +72,7 @@ public class MainActivity extends Activity {
 		etFirstName = (EditText) findViewById(R.id.firstname);
 		etLastName = (EditText) findViewById(R.id.lastname);
 		etEmail = (EditText) findViewById(R.id.email);
+		etFirstName.requestFocus();
 	}
 
 	@Override

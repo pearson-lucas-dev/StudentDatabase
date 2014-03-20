@@ -25,16 +25,19 @@ public final class R {
     }
     public static final class id {
         public static final int TableLayoutDB=0x7f080008;
-        public static final int action_settings=0x7f08000d;
+        public static final int action_settings=0x7f080010;
         public static final int btnClose=0x7f080006;
         public static final int btnCreate=0x7f080004;
         public static final int btnShowTable=0x7f080005;
         public static final int buttonsLayout=0x7f080003;
         public static final int email=0x7f080002;
         public static final int firstname=0x7f080000;
+        public static final int fname=0x7f08000e;
         public static final int lastname=0x7f080001;
         public static final int scrollView=0x7f080007;
         public static final int trHeaders=0x7f080009;
+        public static final int tvStudentEmail=0x7f08000f;
+        public static final int tvStudentName=0x7f08000d;
         public static final int tvTREmail=0x7f08000c;
         public static final int tvTRFirstName=0x7f08000a;
         public static final int tvTRLastName=0x7f08000b;
@@ -42,6 +45,7 @@ public final class R {
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_show_table=0x7f030001;
+        public static final int student_view=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f070000;
