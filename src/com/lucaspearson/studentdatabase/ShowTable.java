@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.view.View;
